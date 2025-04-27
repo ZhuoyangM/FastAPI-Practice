@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from models import Event, User
-from schemas import EventDTO, UserDTO
+from app.schemas import EventDTO, UserDTO
 
 def create_event(db: Session, eventdto: EventDTO) -> Event:
     new_event = Event(

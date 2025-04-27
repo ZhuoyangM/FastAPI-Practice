@@ -1,9 +1,7 @@
 from sqlalchemy import Column, String, DateTime,ForeignKey, Table
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+from app.database import Base
 import uuid
-
-Base = declarative_base()
 
 user_event_association = Table(
     'user_event_association',

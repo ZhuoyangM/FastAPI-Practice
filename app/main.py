@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app import routes
-from app.database import Base, engine
+from app.models import Base, engine
 
 async def lifespan_handler(app: FastAPI):
     Base.metadata.create_all(bind=engine)

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, DateTime, Enum, ForeignKey, Table
+from sqlalchemy import Column, String, DateTime,ForeignKey, Table
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 import uuid
@@ -12,17 +12,11 @@ user_event_association = Table(
     Column('event_id', String, ForeignKey('events.id'), primary_key=True)
 )
 
-class EventStatus(Enum):
-    TODO = 0
-    IN_PROGRESS = 1
-    DONE = 2
-
 class Event(Base):
     __tablename__ = "events"
     id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()), unique=True, index=True)
     title = Column(String, nullable=False)
     description = Column(String, nullable=True)
-    status = Column(Enum(EventStatus), default=EventStatus.TODO, nullable=False)
     start_time = Column(DateTime, nullable=False)
     end_time = Column(DateTime, nullable=False)
     users = relationship("User", secondary=user_event_association, back_populates="events")
